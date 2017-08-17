@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+  {{ super() }}
+  
+  <script>
+    var key_word = "{{ key_word }}";
+    
+    
+    function update()
+    {
+        key_word = $("#key_box").val();
+    }
+    
+    function receive(submit_key_word, page)
+    {
+        $("#key_word_box").text(submit_key_word);
+        <!-- alert('/search/' + '{"key" : "' + submit_key_word + '" ,' + '"page" : ' + page + '}'); -->
+        $.get('/search/' + '{"key" : "' + submit_key_word + '" ,' + '"page" : ' + page + '}', 
+        function(data){
+            $("#title").text("Pixiv : " + submit_key_word);
+            $("#content").html(data);
+            }
+        )
+    }
+    
+    $("#submit").click(
+    function ()
+    {
+        receive(key_word, '1')
+    });
+  </script>
+{% endblock %}

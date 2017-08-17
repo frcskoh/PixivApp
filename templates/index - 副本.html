@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta name="theme-color" content="#42a5f5">
+  
+  <title id="title">Pixiv</title>
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{{ url_for('static', filename = 'css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{{ url_for('static', filename = 'css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+
+<body>
+  <nav class="blue lighten-1" role="navigation">
+    <div class="nav-wrapper">
+    <form id="bar" method="GET">
+        <div class="input-field">
+          <input id="s_search" type="search" oninput="update()" required>
+          <label class="label-icon" for="search"><i class="material-icons" id="s_button">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+    </form>
+    </div>
+  </nav>
+  
+  <div class="container" id="content">
+    <div class="row">OK</div>
+  </div>
+  
+  <footer class="page-footer orange">
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="{{ url_for('static', filename = 'js/materialize.js') }}"></script>
+  <script src="{{ url_for('static', filename = 'js/init.js') }}"></script>
+  
+  <script>
+    var key_word = "2345678";
+    
+    function update()
+    {
+        key_word = $("s_search").val();
+        alert(key_word);
+    }
+    
+    $("#bar").submit(function()
+    {
+        alert(key_word)
+        $.get("/search/" + key_word, function(data){   
+            alert(data);
+            $("#content").html(data);
+            $("#title").text("Pixiv : " + key_word);
+        });
+    });
+    
+  </script>
+  
+  </body>
+</html>
