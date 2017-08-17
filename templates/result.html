@@ -3,16 +3,16 @@
 <div class="container" id="content">
     <div class="row">
     <div class="col s12 m7">
-    {% for j in src %}<div class="card" id="card_{{ loop.index0 }}" hidden>
+    {% for j in src %}<div class="card" id="card_{{ loop.index0 }}" name="{{ ID[loop.index0] }}" hidden>
         <div class="card-image">
-          <img src="{{ url_for('static', filename = 'cache/' + j) }}" onclick="load({{ loop.index0 }})">
+          <img id="img_{{ loop.index0 }}" src="{{ url_for('static', filename = 'cache/' + j) }}" name="{{ j }}" onclick="load('{{ loop.index0 }}')">
           <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" href="{{ url_for('static', filename = 'cache/' + j) }}" download>
           <i class="material-icons">cloud_download</i>
           </a>
         </div>
         <div class="card-content">
-          <span class="card-title">{{ title[loop.index0] }}</span>
-          <p>{{ auth[loop.index0] }}</p>
+          <span id="title_{{ loop.index0 }}" class="card-title">{{ title[loop.index0] }}</span>
+          <a id = "auth_href_{{ loop.index0 }}" href="{{ auth_href[loop.index0] }}">{{ auth_href[loop.index0] }}</a>
         </div>
       </div>{% endfor %}
     </div>

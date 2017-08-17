@@ -3,7 +3,7 @@
 {% block scripts %}
   {{ super() }}
   <script>
-    var key_word = "{{ key_word }}";
+    var key_word = "";
     function update()
     {
         key_word = $("#key_box").val();
@@ -26,10 +26,13 @@
         })
     }
     
-    <!-- function load(ID) -->
-    <!-- { -->
+    function load(order)
+    {
+        var save_src = $("#img_" + order).attr("name");
+        var ID = $("#card_" + order).attr("name");
         
-    <!-- } -->
+        window.location.href = '/image/' + '{"save_src" : "' + save_src + '" ,' + '"ID" : "' + ID + '"}';
+    }
     
     $("#submit").click(
     function ()

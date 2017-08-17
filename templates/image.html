@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <meta name="theme-color" content="#42a5f5">
-  <title id="title">{{ image_title }}</title>
+  <title id="title">{{ auth }}</title>
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="{{ url_for('static', filename = 'css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -22,45 +22,40 @@
 </head>
 {% endblock %}
 <body>
-  <nav class="nav-extended">
-    <div class="nav-wrapper">
-      <a href="" class="brand-logo">
-      <div class="container">
-      <div class="row center"><div class="col center">
-        <img src="{{ url_for('static', filename = 'logo.svg') }}" height=50>
-      </div></div>
+  <div class="navbar-fixed">
+    <nav class="blue lighten-1" role="navigation">
+      <div class="nav-wrapper container">
+        <i class="material-icons" onclick="window.history.back(-1)">arrow_back</i>
       </div>
-      </a>
-    </div>
-    <div class="nav-content">
-      <div class="container"><div class="input-field"><div class="row">
-      <div class="col s12">
-        <input id="key_box" type="search" oninput="update()" value="" required>
-        <i class="material-icons">close</i>
-      </div>
-      <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal">
-        <i class="material-icons" id="submit">search</i>
-      </a>
-    </div></div></div>
-    </div>
-  </nav>
-
+      <ul class="right">
+        <li><a>A link</a></li>
+        <li><a>A second link</a></li>
+        <li><a>A third link</a></li>
+      </ul>
+    </nav>
+  </div>
+  
   <div id="content">
-    <div class="card" id="card" hidden>
+    <div class="card" id="card">
         <div class="card-image">
-          <img src="{{ image_src }}">
-          <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" href="{{ image_src }}" download>
+          <img src="{{ url_for('static', filename = 'cache/' + image_src) }}">
+          <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" href="{{ url_for('static', filename = 'cache/' + image_src) }}" download>
             <i class="material-icons">cloud_download</i>
           </a>
         </div>
         <div class="card-content">
-          <span class="card-title">{{ image_title }}</span>
-          <p>{{ image_auth }}</p>
-          <p>{{ image_intro }}</p>
-        </div>
+          <div class="row valign-wrapper">
+            <div class="col s2">
+              <img src="{{ icon }}" alt="{{ auth }}" href="{{ user_href }}" class="circle responsive-img">
+            </div>
+            <div class="col s10">
+              <span class="black-text">{{ auth }}</span>
+            </div>
+          </div>
+      </div>
       </div>
   </div>
-
+  
   <footer class="page-footer orange">
     <div class="footer-copyright">
       <div class="container">
