@@ -21,7 +21,14 @@ def search(info):
     print(data)
     return render_template('result.html', title = data['title'], auth = data['auth'],
                            href = data['href'], src = data['src'], page_list = data['page_list'],
-                           current_page = data['current_page'])
+                           current_page = data['current_page'], length = data['length'])
+
+##@app.route('/image/<info>', methods = ['GET'])
+##def search(info):
+##    data = json.loads(info)
+##    print(data)
+##    return render_template('image.html', image_title = data['title'], image_auth = data['auth'],
+##                           image_src = data['src'])
 
 if __name__ == '__main__':
     app.run(debug = True)

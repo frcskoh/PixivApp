@@ -1,10 +1,11 @@
 <div id="content">
+<div id="num" hidden>{{ length }}</div>
 <div class="container" id="content">
     <div class="row">
     <div class="col s12 m7">
-    {% for j in src %}<div class="card">
+    {% for j in src %}<div class="card" id="card_{{ loop.index0 }}" hidden>
         <div class="card-image">
-          <img src="{{ url_for('static', filename = 'cache/' + j) }}">
+          <img src="{{ url_for('static', filename = 'cache/' + j) }}" onclick="load({{ loop.index0 }})">
           <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" href="{{ url_for('static', filename = 'cache/' + j) }}" download>
           <i class="material-icons">cloud_download</i>
           </a>
@@ -20,11 +21,15 @@
 
 <div class="row center">
 <ul class="pagination">
-    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+    {% if page_list[0] == current_page %}<li class="disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>
+    {% else %}<li class="waves-effect"><a href="javascript:receive(key_word,{{ current_page - 1 }})"><i class="material-icons">chevron_left</i></a></li>
+    {% endif %}
     {% for i in page_list %}{% if i == current_page %}<li class="active"><a href="javascript:receive(key_word,{{ i }})">{{ i }}</a></li>
     {% else %}<li class="waves-effect"><a href="javascript:receive(key_word,{{ i }})">{{ i }}</a></li>
     {% endif %}{% endfor %}
-    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+    {% if page_list[-1] == current_page %}<li class="disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>
+    {% else %}<li class="waves-effect"><a href="javascript:receive(key_word,{{ current_page + 1 }})"><i class="material-icons">chevron_right</i></a></li>
+    {% endif %}
 </ul>
 </div>
 </div>

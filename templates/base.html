@@ -42,16 +42,16 @@
         <i class="material-icons" id="submit">search</i>
       </a>
     </div></div></div>
+    </div>
   </nav>
   
   <div class="container">
     <h4 id="key_word_box">{{ key_word }}</h4>
+    <div id="progress" class="progress" hidden><div id="indeterminate" class="indeterminate" hidden></div></div>
   </div>
-  
   <div id="content">
   <div class="container">
   </div>
-  
   <div class="row center">
   <ul class="pagination">
     <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
@@ -67,14 +67,11 @@
       </div>
     </div>
   </footer>
-  
   {% block scripts %}
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="{{ url_for('static', filename = 'js/materialize.js') }}"></script>
   <script src="{{ url_for('static', filename = 'js/init.js') }}"></script>
   {% endblock %}
-  </iframe>
-  
   </body>
 </html>

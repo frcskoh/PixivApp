@@ -2,27 +2,34 @@
 
 {% block scripts %}
   {{ super() }}
-  
   <script>
     var key_word = "{{ key_word }}";
-    
-    
     function update()
     {
         key_word = $("#key_box").val();
     }
-    
     function receive(submit_key_word, page)
     {
+        $("#progress").fadeIn()
+        $("#indeterminate").fadeIn()
         $("#key_word_box").text(submit_key_word);
-        <!-- alert('/search/' + '{"key" : "' + submit_key_word + '" ,' + '"page" : ' + page + '}'); -->
         $.get('/search/' + '{"key" : "' + submit_key_word + '" ,' + '"page" : ' + page + '}', 
         function(data){
+            $("#progress").fadeOut()
+            $("#indeterminate").fadeOut()
             $("#title").text("Pixiv : " + submit_key_word);
             $("#content").html(data);
+            for (var i = 0; i <= parseInt($("#num").text()); i++)
+            {
+                $("#card_" + i.toString()).fadeIn("slow")
             }
-        )
+        })
     }
+    
+    <!-- function load(ID) -->
+    <!-- { -->
+        
+    <!-- } -->
     
     $("#submit").click(
     function ()
