@@ -71,12 +71,15 @@ def ImageBuilder(ID):
 
     body = soup.find('div', 'cool-work-main')
     titlearea = body.find('div', 'titlearea')
-    
+
     user = {
-            'icon' : titlearea.find('div', 'usericon').img['src'],
-            'href' : titlearea.find('div', 'usericon').a['href'],
+            'title' : titlearea.find('h1', 'title').string,
             'auth' : titlearea.find('div', 'userdata').h2.a.string,
-            'date' : titlearea.find('div', 'userdata').span.string
+            'date' : titlearea.find('div', 'userdata').span.string, 
+            'icon' : titlearea.find('div', 'usericon').img['src'],
+            'auth_href' : titlearea.find('div', 'usericon').a['href'],
+            'caption' : soup.find('div', 'caption').string
             }
+    
 
     return user
