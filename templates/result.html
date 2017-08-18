@@ -7,12 +7,20 @@
         <div class="card-image">
           <img id="img_{{ loop.index0 }}" src="{{ url_for('static', filename = 'cache/' + j) }}" name="{{ j }}" onclick="load('{{ loop.index0 }}')">
           <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" href="{{ url_for('static', filename = 'cache/' + j) }}" download>
-          <i class="material-icons">cloud_download</i>
+            <i class="material-icons">cloud_download</i>
           </a>
+          <span id="title_{{ loop.index0 }}" class="card-title">{{ title[loop.index0] }}</span>
         </div>
         <div class="card-content">
-          <span id="title_{{ loop.index0 }}" class="card-title">{{ title[loop.index0] }}</span>
-          <a id = "auth_href_{{ loop.index0 }}" href="{{ auth_href[loop.index0] }}">{{ auth_href[loop.index0] }}</a>
+          <p>{{ spc_info['caption'] }}</p>
+        </div>
+        <div class="row center valign-wrapper">
+            <div class="col s3">
+              <img src="{{ url_for('static', filename = 'cache/' + spc_info[loop.index0]['icon']) }}" class="responsive-img">
+            </div>
+            <div class="col s9">
+              <span class="black-text">by&nbsp&nbsp{{ auth[loop.index0] }}</span>
+            </div>
         </div>
       </div>{% endfor %}
     </div>

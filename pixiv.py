@@ -18,19 +18,12 @@ def index():
 def search(info):
     key = json.loads(info)
     data = StreamUpdate(key['key'], page = key['page'])
-    print(data)
+    #print(data)
     return render_template('result.html', title = data['title'], auth = data['auth'],
                            href = data['href'], src = data['src'], page_list = data['page_list'],
                            current_page = data['current_page'], length = data['length'],
-                           auth_href = data['auth_href'], ID = data['ID'])
+                           auth_href = data['auth_href'], ID = data['ID'], spc_info = data['spc_info'])
 
-@app.route('/image/<info>', methods = ['GET'])
-def imgae(info):
-    info = json.loads(info)
-    data = ImageBuilder(info['ID'])
-    print(data)
-    return render_template('image.html', image_src = info['save_src'], 
-                           icon = data['icon'], date = data['date'], user_href = data['href'])
 
 if __name__ == '__main__':
     app.run(debug = True)
