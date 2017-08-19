@@ -10,30 +10,21 @@
     }
     function receive(submit_key_word, page)
     {
-        $("#progress").fadeIn()
-        $("#indeterminate").fadeIn()
+        $("#progress").fadeIn("slow")
+        $("#indeterminate").fadeIn("slow")
         $("#key_word_box").text(submit_key_word);
         $.get('/search/' + '{"key" : "' + submit_key_word + '" ,' + '"page" : ' + page + '}', 
         function(data){
-            $("#progress").fadeOut()
-            $("#indeterminate").fadeOut()
+            $("#progress").fadeOut("slow")
+            $("#indeterminate").fadeOut("slow")
             $("#title").text("Pixiv : " + submit_key_word);
             $("#content").html(data);
-            for (var i = 0; i <= parseInt($("#num").text()); i++)
+            for (var i = 0; i < parseInt($("#length").text()); i++)
             {
                 $("#card_" + i.toString()).fadeIn("slow")
             }
         })
     }
-    
-    function load(order)
-    {
-        var save_src = $("#img_" + order).attr("name");
-        var ID = $("#card_" + order).attr("name");
-        
-        window.location.href = '/image/' + '{"save_src" : "' + save_src + '" ,' + '"ID" : "' + ID + '"}';
-    }
-    
     $("#submit").click(
     function ()
     {
